@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  grpc-server:
+    image: golang:1.13
+    container_name: "grpc-server"
+    working_dir: "/app"
+    volumes:
+      - ".:/app"
+    environment:
+      - TZ=Asia/Tokyo
+      - GO111MODULE=on
+    tty: true
+
+  grpc-client:
+    build: ./client/
+    container_name: "grpc-client"
+    working_dir: "/app"
+    volumes:
+      - ".:/app"
+    tty: true
